@@ -14,16 +14,6 @@ This project is a Spring Boot application designed to process ad event clicks in
 - **Cache/Message Broker**: Redis
 - **Testing**: JUnit 5, Testcontainers
 
-## Architecture
-
-```mermaid
-graph LR
-    A[Ad Click Event Source] --> B[Ingestion API (Spring Boot)]
-    B --> C[Deduplication (Redis)]
-    C --> D[Enrichment Service]
-    D --> E[Storage Abstraction (S3 / LocalStack)]
-    D --> F[Metrics / Logging]
-
 ## Project Structure
 
 ```
