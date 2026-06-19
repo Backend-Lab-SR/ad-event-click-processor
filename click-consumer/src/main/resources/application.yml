@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: click-consumer
+  cloud:
+    aws:
+      region:
+        static: us-east-1
+      credentials:
+        access-key: test
+        secret-key: test
+      sqs:
+        endpoint: http://localhost:4566
+        queue-not-found-strategy: create
+
+server:
+  port: 8081
