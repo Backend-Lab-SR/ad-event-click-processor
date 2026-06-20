@@ -1,6 +1,14 @@
 spring:
   application:
     name: click-api
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ad_events
+    username: adtech
+    password: adtech
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
   cloud:
     aws:
       region:
