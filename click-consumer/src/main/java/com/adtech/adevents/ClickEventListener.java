@@ -18,10 +18,15 @@ public class ClickEventListener {
 
     private final ObjectMapper objectMapper;
     private final StringRedisTemplate redisTemplate;
+    private final ClickEventRepository clickEventRepository;
 
-    public ClickEventListener(ObjectMapper objectMapper, StringRedisTemplate redisTemplate) {
+    public ClickEventListener(
+            ObjectMapper objectMapper,
+            StringRedisTemplate redisTemplate,
+            ClickEventRepository clickEventRepository) {
         this.objectMapper = objectMapper;
         this.redisTemplate = redisTemplate;
+        this.clickEventRepository = clickEventRepository;
     }
 
     @SqsListener("click-events")
@@ -36,6 +41,7 @@ public class ClickEventListener {
         }
 
         log.info("Received click event: {}", event);
+        clickEventRepository.save(ClickEventEntity.from(event));
     }
 
     private ClickEvent deserialize(String message) {
